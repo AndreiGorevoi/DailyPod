@@ -3,10 +3,10 @@ package dto
 import "time"
 
 type GamesResponse struct {
-	Response []Response `json:"response"`
+	Games []Game `json:"response"`
 }
 
-type Response struct {
+type Game struct {
 	Date   Date   `json:"date"`
 	Status Status `json:"status"`
 	Teams  Teams  `json:"teams"`
