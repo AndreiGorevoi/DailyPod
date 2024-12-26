@@ -27,5 +27,6 @@ type Teams struct {
 }
 
 type Team struct {
-	Name string `json:"name"`
+	Name     string `json:"name"`
+	Nickname string `json:nickname`
 }
