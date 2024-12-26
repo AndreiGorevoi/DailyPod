@@ -4,26 +4,47 @@ import (
 	"DailyPod/config"
 	"DailyPod/dto"
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
+	"time"
 )
+
+const day = time.Hour * 24
+
+type cache struct {
+	nextGames struct {
+		lastUpdate time.Time
+		data       string
+	}
+}
 
 type Dallas struct {
 	config *config.Config
+	cache  *cache
 }
 
 func NewDallas(cfg *config.Config) *Dallas {
 	return &Dallas{
 		config: cfg,
+		cache:  &cache{},
 	}
 }
 
 func (dls *Dallas) GetNextGamesStatus() (string, error) {
+	if time.Since(dls.cache.nextGames.lastUpdate) < day {
+		fmt.Println("Returning from cache")
+		return dls.cache.nextGames.data, nil //take data from cache
+	}
+
 	games, err := dls.next3Games()
 	if err != nil {
 		return "", err
 	}
 	res := formatGamesToString(games)
+	dls.cache.nextGames.lastUpdate = time.Now()
+	dls.cache.nextGames.data = res
+	fmt.Println("Cache is empty")
 	return res, nil
 }
 
