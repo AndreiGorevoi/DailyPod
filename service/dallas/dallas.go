@@ -4,7 +4,6 @@ import (
 	"DailyPod/config"
 	"DailyPod/dto"
 	"encoding/json"
-	"fmt"
 	"io"
 	"os"
 	"time"
@@ -33,7 +32,6 @@ func NewDallas(cfg *config.Config) *Dallas {
 
 func (dls *Dallas) GetNextGamesStatus() (string, error) {
 	if time.Since(dls.cache.nextGames.lastUpdate) < day {
-		fmt.Println("Returning from cache")
 		return dls.cache.nextGames.data, nil //take data from cache
 	}
 
@@ -44,7 +42,6 @@ func (dls *Dallas) GetNextGamesStatus() (string, error) {
 	res := formatGamesToString(games)
 	dls.cache.nextGames.lastUpdate = time.Now()
 	dls.cache.nextGames.data = res
-	fmt.Println("Cache is empty")
 	return res, nil
 }
 
