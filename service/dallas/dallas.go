@@ -18,11 +18,12 @@ func NewDallas(cfg *config.Config) *Dallas {
 	}
 }
 
-func (dls *Dallas) Next3Games() (res [3]dto.Game, err error) {
+func (dls *Dallas) Next3Games() ([]dto.Game, error) {
 	games, err := extractGames()
 	filtered := filterGames(games)
+	res := make([]dto.Game, 0, 3)
 	for i := 0; i < 3 && i < len(filtered); i++ {
-		res[i] = filtered[i]
+		res = append(res, filtered[i])
 	}
 
 	return res, err

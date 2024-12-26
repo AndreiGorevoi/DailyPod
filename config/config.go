@@ -8,7 +8,8 @@ import (
 )
 
 type Config struct {
-	API_NBA_key string
+	NbaApiKey     string
+	TelegramToken string
 }
 
 func LoadConfig() *Config {
@@ -20,6 +21,7 @@ func LoadConfig() *Config {
 	}
 
 	return &Config{
-		API_NBA_key: os.Getenv("API_NBA_key"),
+		NbaApiKey:     os.Getenv("API_NBA_key"),
+		TelegramToken: os.Getenv("telegram_token"),
 	}
 }

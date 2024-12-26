@@ -2,11 +2,14 @@ package main
 
 import (
 	"DailyPod/config"
+	"DailyPod/service/bot"
 	"DailyPod/service/dallas"
 )
 
 func main() {
 	cfg := config.LoadConfig()
-	_ = dallas.NewDallas(cfg)
+	dls := dallas.NewDallas(cfg)
+	b := bot.NewBot(cfg, dls)
+	b.Run()
 
 }
