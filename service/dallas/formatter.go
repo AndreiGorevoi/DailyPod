@@ -1,4 +1,4 @@
-package formatter
+package dallas
 
 import (
 	"DailyPod/dto"
@@ -9,7 +9,11 @@ import (
 
 const outputFormat = "Mon,Jan 2 - 3:04PM(MST)"
 
-func FormatGamesToString(games []dto.Game) string {
+func formatGamesToString(games []dto.Game) string {
+	if len(games) == 0 {
+		return ""
+	}
+
 	b := strings.Builder{}
 
 	// Estimate total size

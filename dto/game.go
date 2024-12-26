@@ -28,5 +28,5 @@ type Teams struct {
 
 type Team struct {
 	Name     string `json:"name"`
-	Nickname string `json:nickname`
+	Nickname string `json:"nickname"`
 }

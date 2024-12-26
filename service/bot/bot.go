@@ -3,7 +3,6 @@ package bot
 import (
 	"DailyPod/config"
 	"DailyPod/service/dallas"
-	"DailyPod/service/formatter"
 	"log"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -39,11 +38,10 @@ func (b *TelegramBot) Run() {
 		switch update.Message.Text {
 		case "/dls_next":
 			var msg tgbotapi.Chattable
-			games, err := b.dallasService.Next3Games()
+			txt, err := b.dallasService.GetNextGamesStatus()
 			if err != nil {
 				msg = tgbotapi.NewMessage(update.Message.Chat.ID, "Sth went wrong")
 			}
-			txt := formatter.FormatGamesToString(games)
 			msg = tgbotapi.NewMessage(update.Message.Chat.ID, txt)
 			bot.Send(msg)
 		}

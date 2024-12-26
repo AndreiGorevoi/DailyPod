@@ -18,7 +18,16 @@ func NewDallas(cfg *config.Config) *Dallas {
 	}
 }
 
-func (dls *Dallas) Next3Games() ([]dto.Game, error) {
+func (dls *Dallas) GetNextGamesStatus() (string, error) {
+	games, err := dls.next3Games()
+	if err != nil {
+		return "", err
+	}
+	res := formatGamesToString(games)
+	return res, nil
+}
+
+func (dls *Dallas) next3Games() ([]dto.Game, error) {
 	games, err := extractGames()
 	filtered := filterGames(games)
 	res := make([]dto.Game, 0, 3)
