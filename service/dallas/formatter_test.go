@@ -31,7 +31,7 @@ func TestFormatGamesToString(t *testing.T) {
 					},
 				},
 			},
-			expected: "1: LosAngeles - Dallas. | Wed,Dec 25 - 1:00PM(CET)\n",
+			expected: "1: LosAngeles - Dallas. 🗓️ Wed,Dec 25 - 1:00PM(CET)\n",
 		},
 		`two games`: {
 			input: []dto.Game{
@@ -62,7 +62,7 @@ func TestFormatGamesToString(t *testing.T) {
 					},
 				},
 			},
-			expected: "1: GSW - Portland. | Thu,Dec 26 - 1:00PM(CET)\n2: LosAngeles - Dallas. | Wed,Dec 25 - 1:00PM(CET)\n",
+			expected: "1: GSW - Portland. 🗓️ Thu,Dec 26 - 1:00PM(CET)\n2: LosAngeles - Dallas. 🗓️ Wed,Dec 25 - 1:00PM(CET)\n",
 		},
 		`empty input`: {
 			input:    nil,

@@ -23,7 +23,7 @@ func formatGamesToString(games []dto.Game) string {
 	for i, g := range games {
 		l, _ := time.LoadLocation("Europe/Warsaw")
 		date := g.Date.Start.In(l).Format(outputFormat)
-		b.WriteString(fmt.Sprintf("%d: %s - %s. | %s\n", i+1, g.Teams.Home.Nickname, g.Teams.Visitors.Nickname, date))
+		b.WriteString(fmt.Sprintf("%d: %s - %s. 🗓️ %s\n", i+1, g.Teams.Home.Nickname, g.Teams.Visitors.Nickname, date))
 	}
 
 	return b.String()
