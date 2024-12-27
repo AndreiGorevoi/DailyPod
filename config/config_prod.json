@@ -1,0 +1,4 @@
+{
+  "mock_db_data": false,
+  "api_nba_url": "https://api-nba-v1.p.rapidapi.com"
+}
